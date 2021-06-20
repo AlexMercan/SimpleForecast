@@ -1,9 +1,10 @@
 package weatherapi
 
 import (
-	"encoding/json"
+	"context"
+	"fmt"
 	"net/http"
-	"os"
+	"net/url"
 )
 
 type Condition struct {
@@ -35,65 +36,62 @@ type Hour struct {
 	Condition           Condition `json:"condition"`
 }
 
-
 type ForecastDay struct {
 	Date  string `json:"date"`
 	Day   Day    `json:"day"`
 	Hours []Hour `json:"hour"`
 }
 
-type Forecast struct{
-    ForecastDays []ForecastDay `json:"forecastday"`
+type Forecast struct {
+	ForecastDays []ForecastDay `json:"forecastday"`
 }
 
-type Location struct{
-    Name string `json:"name"`
-    Region string `json:"region"`
+type Location struct {
+	Name    string `json:"name"`
+	Region  string `json:"region"`
+	Country string `json:"country"`
 }
 
 type WeatherApiData struct {
+	Location Location       `json:"location"`
 	Currrent CurrentWeather `json:"current"`
-    Forecast Forecast `json:"forecast"`
+	Forecast Forecast       `json:"forecast"`
 }
 
-func getWeatherData(location string, wantForecast bool, numberOfDays int32) (WeatherApiData, error) {
-	const baseURL = "https://api.weatherapi.com/v1/"
-	client := http.Client{}
-	requestType := "current.json"
-	if wantForecast == true {
-		requestType = "forecast.json"
+func (apiClient *WeatherClient) GetForecast(ctx context.Context, options *ForecastOptions) (*WeatherApiData, error) {
+	numberOfDays := 1
+	location := "auto:ip"
+	if options != nil {
+		numberOfDays = options.NumberOfDays
+		location = options.Location
 	}
-	request, err := http.NewRequest("GET", baseURL+requestType, nil)
+	request, err := http.NewRequest("GET",
+		fmt.Sprintf("%s/forecast.json", apiClient.BaseURL), nil)
+	parameters := url.Values{}
+	parameters.Add("key", apiClient.apiKey)
+	parameters.Add("q", location)
+	parameters.Add("days", fmt.Sprint(numberOfDays))
+	parameters.Add("aqi", "no")
+	parameters.Add("alerts", "no")
+	request.URL.RawQuery = parameters.Encode()
 	if err != nil {
-		return WeatherApiData{}, err
+		return nil, err
 	}
-	apiKey := os.Getenv("MY_WEATHER_API_KEY")
-	query := request.URL.Query()
-	query.Add("key", apiKey)
-	query.Add("q", location)
-	query.Add("aqi", "no")
 
-	if wantForecast == true {
-		query.Add("days", string(numberOfDays)) //nubmerOfDays has to be between 1 and 10
-	}
-	request.URL.RawQuery = query.Encode()
-	response, err := client.Do(request)
-	if err != nil {
-		return WeatherApiData{}, err
-	}
-	var weatherData WeatherApiData
-	decoder := json.NewDecoder(response.Body)
-	err = decoder.Decode(&weatherData)
-	if err != nil {
-		return WeatherApiData{}, err
-	}
-	return weatherData, nil
+	return apiClient.sendRequest(ctx, request)
 }
 
-func GetCurrentWeather(location string) (WeatherApiData, error) {
-	return getWeatherData(location, false, 0)
-}
+func (apiClient *WeatherClient) GetCurrent(ctx context.Context, location string) (*WeatherApiData, error) {
+	request, err := http.NewRequest("GET", fmt.Sprintf("%s/current.json", apiClient.BaseURL), nil)
 
-func GetForecast(location string, numberOfDays int32) (WeatherApiData, error) {
-	return getWeatherData(location, true, numberOfDays)
+	parameters := url.Values{}
+	parameters.Add("key", apiClient.apiKey)
+	parameters.Add("q", location)
+	parameters.Add("aqi", "no")
+	request.URL.RawQuery = parameters.Encode()
+
+	if err != nil {
+		return nil, err
+	}
+	return apiClient.sendRequest(ctx, request)
 }
