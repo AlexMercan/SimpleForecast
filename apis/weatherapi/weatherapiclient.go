@@ -30,6 +30,7 @@ type WeatherClient struct {
 type ForecastOptions struct {
 	NumberOfDays int
 	Location     string
+	Language     string
 }
 
 func NewWeatherClient(key string) *WeatherClient {

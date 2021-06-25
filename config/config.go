@@ -8,6 +8,7 @@ import (
 
 type Config struct {
 	Location string `json:"location"`
+    Language string `json:"lang"`
 }
 
 func LoadConfiguration() (*Config, error) {
@@ -48,7 +49,7 @@ func LoadConfiguration() (*Config, error) {
 }
 
 func createConfigAndWriteDefault(configFilePath string) (*Config, error) {
-	configuration := Config{"auto:ip"}
+	configuration := Config{"auto:ip", "en"}
 	jsonConfigText, err := json.MarshalIndent(configuration, "", " ")
 	if err != nil {
 		return nil, err
