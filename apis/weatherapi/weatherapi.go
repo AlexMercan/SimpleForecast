@@ -7,8 +7,60 @@ import (
 	"net/url"
 )
 
+const (
+	Sunny                              = 1000
+	PartlyCloudy                       = 1003
+	Cloudy                             = 1006
+	Overcast                           = 1009
+	Mist                               = 1030
+	PatchyRainPossible                 = 1063
+	PatchySnowPossible                 = 1066
+	PatchySleetPossible                = 1069
+	PatchyFreezingDrizzlePossible      = 1072
+	ThunderyOutbreaksPossible          = 1087
+	BlowingSnow                        = 1114
+	Blizzard                           = 1117
+	Fog                                = 1135
+	FreezingFog                        = 1147
+	PatchyLightDrizzle                 = 1150
+	LightDrizzle                       = 1153
+	FreezingDrizzle                    = 1168
+	HeavyFreezingDrizzle               = 1171
+	PatchyLightRain                    = 1180
+	LightRain                          = 1183
+	ModerateRainAtTimes                = 1186
+	ModerateRain                       = 1189
+	HeavyRainAtTimes                   = 1192
+	HeavyRain                          = 1195
+	LightFreezingRain                  = 1198
+	ModerateOrHeavyFreezingRain        = 1201
+	LightSleet                         = 1204
+	ModerateOrHeavySleet               = 1207
+	PatchyLightSnow                    = 1210
+	LightSnow                          = 1213
+	PatchyModerateSnow                 = 1216
+	ModerateSnow                       = 1219
+	PatchyHeavySnow                    = 1222
+	HeavySnow                          = 1225
+	IcePellets                         = 1237
+	LightRainShower                    = 1240
+	ModerateOrHeavyRainShower          = 1243
+	TorrentialRainShower               = 1246
+	LightSleetShowers                  = 1249
+	ModerateOrHeavySleetShowers        = 1252
+	LightSnowShowers                   = 1255
+	ModerateOrHeavySnowShowers         = 1258
+	LightShowersOfIcePellets           = 1261
+	ModerateOrHeavyShowersOfIcePellets = 1264
+	PatchyLightRainWithThunder         = 1273
+	ModerateOrHeavyRainWithThunder     = 1276
+	PatchyLightSnowWithThunder         = 1279
+	ModerateOrHeavySnowWithThunder     = 1282
+)
+
 type Condition struct {
 	ConditionText string `json:"text"`
+	ConditionCode int    `json:"code"`
 }
 
 type CurrentWeather struct {
@@ -23,23 +75,13 @@ type Day struct {
 	MaxTemperature_Celsius float32   `json:"maxtemp_c"`
 	MinTemperature_Celsius float32   `json:"mintemp_c"`
 	AverageHumidity        float32   `json:"avghumidity"`
-	ChanceOfRain           string       `json:"daily_chance_of_rain"`
+	ChanceOfRain           string    `json:"daily_chance_of_rain"`
 	Condition              Condition `json:"condition"`
 }
 
-type Hour struct {
-	DateAndTime         string    `json:"time"`
-	Temperature_Celsius float32   `json:"temp_c"`
-	Humidity            int       `json:"humidity"`
-	Clouds              int       `json:"cloud"`
-	ChanceOfRain        string       `json:"chance_of_rain"`
-	Condition           Condition `json:"condition"`
-}
-
 type ForecastDay struct {
-	Date  string `json:"date"`
-	Day   Day    `json:"day"`
-	Hours []Hour `json:"hour"`
+	Date string `json:"date"`
+	Day  Day    `json:"day"`
 }
 
 type Forecast struct {

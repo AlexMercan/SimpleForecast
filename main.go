@@ -17,27 +17,15 @@ type CommandLineOptions struct {
 	Language     string
 }
 
-const (
-	colorReset  = "\033[0m"
-	colorRed    = "\033[31m"
-	colorGreen  = "\033[32m"
-	colorYellow = "\033[33m"
-	colorBlue   = "\033[34m"
-	colorPurple = "\033[35m"
-	colorCyan   = "\033[36m"
-	colorWhite  = "\033[37m"
-)
-
 func parseCommandLineArguments(config *config.Config) *CommandLineOptions {
-	numberOfDays := flag.Int("days", 1, "Number of days for the forecast(1 to 3)")
+	numberOfDays := flag.Int("days", 0, "Number of days for the forecast(1 to 3)")
 	location := flag.String("location", config.Location, "Location for weather data(default is location via ip)")
-	forecast := flag.Bool("forecast", false, "Flag that represents a request for forecast")
 	lang := flag.String("lang", config.Language, "Language of the weather status(sunny, cloudy, etc.")
 	flag.Parse()
 	return &CommandLineOptions{
 		NumberOfDays: *numberOfDays,
 		Location:     *location,
-		Forecast:     *forecast,
+		Forecast:     (*numberOfDays > 0),
 		Language:     *lang,
 	}
 }
