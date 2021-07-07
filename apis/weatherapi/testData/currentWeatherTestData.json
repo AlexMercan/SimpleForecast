@@ -1,0 +1,18 @@
+{
+    "location": {
+        "name": "New York",
+        "region": "New York",
+        "country": "United States of America"
+    },
+    "current": {
+        "last_updated": "2021-07-07 11:00",
+        "temp_c": 28.9,
+        "condition": {
+            "text": "Sunny",
+            "code": 1000
+        },
+        "wind_kph": 6.1,
+        "humidity": 63
+    },
+    "forecast": {}
+}

@@ -53,132 +53,29 @@ func colorTemperature(temperature float32) string {
 	return coloredTemperature
 }
 
-func isCloudy(weatherConditionCode int) bool {
-	switch weatherConditionCode {
-	case weatherapi.Cloudy, weatherapi.PartlyCloudy, weatherapi.Overcast:
-		return true
-	}
-	return false
-}
-
-func isFog(weatherConditionCode int) bool {
-	switch weatherConditionCode {
-	case weatherapi.Fog, weatherapi.Mist, weatherapi.FreezingFog:
-		return true
-	}
-	return false
-}
-
-func isLightRain(weatherConditionCode int) bool {
-	switch weatherConditionCode {
-	case weatherapi.LightRain, weatherapi.PatchyLightRain,
-		weatherapi.PatchyRainPossible, weatherapi.LightFreezingRain,
-		weatherapi.LightRainShower, weatherapi.PatchyLightDrizzle,
-		weatherapi.LightDrizzle, weatherapi.FreezingDrizzle,
-		weatherapi.HeavyFreezingDrizzle, weatherapi.ModerateOrHeavyRainShower,
-		weatherapi.PatchyFreezingDrizzlePossible:
-		return true
-	}
-	return false
-}
-
-func isHeavyRain(weatherConditionCode int) bool {
-	switch weatherConditionCode {
-	case weatherapi.HeavyRain, weatherapi.HeavyRainAtTimes, weatherapi.ModerateRain,
-		weatherapi.ModerateRainAtTimes, weatherapi.TorrentialRainShower,
-		weatherapi.ModerateOrHeavyFreezingRain:
-		return true
-	}
-	return false
-}
-
-func isLightSnow(weatherConditionCode int) bool {
-	switch weatherConditionCode {
-	case weatherapi.LightSnow, weatherapi.LightSnowShowers,
-		weatherapi.PatchyLightSnow, weatherapi.PatchySnowPossible,
-		weatherapi.LightShowersOfIcePellets, weatherapi.BlowingSnow,
-		weatherapi.IcePellets:
-		return true
-	}
-	return false
-}
-
-func isHeavySnow(weatherConditionCode int) bool {
-	switch weatherConditionCode {
-	case weatherapi.HeavySnow, weatherapi.ModerateOrHeavySnowShowers,
-		weatherapi.PatchyModerateSnow, weatherapi.ModerateSnow,
-		weatherapi.PatchyHeavySnow, weatherapi.ModerateOrHeavyShowersOfIcePellets,
-		weatherapi.Blizzard:
-		return true
-	}
-	return false
-}
-
-func isSleet(weatherConditionCode int) bool {
-	switch weatherConditionCode {
-	case weatherapi.LightSleet, weatherapi.LightSleetShowers,
-		weatherapi.ModerateOrHeavySleetShowers, weatherapi.PatchySleetPossible,
-		weatherapi.ModerateOrHeavySleet:
-		return true
-	}
-	return false
-}
-
-func isSunny(weatherConditionCode int) bool {
-	switch weatherConditionCode {
-	case weatherapi.Sunny:
-		return true
-	}
-	return false
-}
-
-func isHeavyRainThunder(weatherConditionCode int) bool {
-	switch weatherConditionCode {
-	case weatherapi.ModerateOrHeavyRainWithThunder, weatherapi.ThunderyOutbreaksPossible:
-		return true
-	}
-	return false
-}
-
-func isHeavyShowersThunder(weatherConditionCode int) bool {
-	switch weatherConditionCode {
-	case weatherapi.PatchyLightRainWithThunder:
-		return true
-	}
-	return false
-}
-
-func isSnowShowerThunder(weatherConditionCode int) bool {
-	switch weatherConditionCode {
-	case weatherapi.PatchyLightSnowWithThunder, weatherapi.ModerateOrHeavySnowWithThunder:
-		return true
-	}
-	return false
-}
-
 func getWeatherAsciiDrawing(weatherConditionCode int) []string {
 	switch {
-	case isSunny(weatherConditionCode):
+	case weatherapi.IsSunny(weatherConditionCode):
 		return sunnyAscii
-	case isCloudy(weatherConditionCode):
+	case weatherapi.IsCloudy(weatherConditionCode):
 		return cloudyAscii
-	case isFog(weatherConditionCode):
+	case weatherapi.IsFog(weatherConditionCode):
 		return fogAscii
-	case isLightRain(weatherConditionCode):
+	case weatherapi.IsLightRain(weatherConditionCode):
 		return lightRainAscii
-	case isHeavyRain(weatherConditionCode):
+	case weatherapi.IsHeavyRain(weatherConditionCode):
 		return heavyRainAscii
-	case isLightSnow(weatherConditionCode):
+	case weatherapi.IsLightSnow(weatherConditionCode):
 		return lightSnowAscii
-	case isHeavySnow(weatherConditionCode):
+	case weatherapi.IsHeavySnow(weatherConditionCode):
 		return heavySnowAscii
-	case isSleet(weatherConditionCode):
+	case weatherapi.IsSleet(weatherConditionCode):
 		return sleetAscii
-	case isHeavyRainThunder(weatherConditionCode):
+	case weatherapi.IsHeavyRainThunder(weatherConditionCode):
 		return thunderyHeavyRainAscii
-	case isHeavyShowersThunder(weatherConditionCode):
+	case weatherapi.IsHeavyShowersThunder(weatherConditionCode):
 		return thunderyHeavyShowersAscii
-	case isSnowShowerThunder(weatherConditionCode):
+	case weatherapi.IsSnowShowerThunder(weatherConditionCode):
 		return thunderySnowShowersAscii
 	default:
 		return cloudyAscii

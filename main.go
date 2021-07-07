@@ -38,9 +38,9 @@ func main() {
 	}
 	options := parseCommandLineArguments(configuration)
 
-	client := weatherapi.NewWeatherClient(os.Getenv("MY_WEATHER_API_KEY"))
+	client := weatherapi.NewWeatherClient(os.Getenv("MY_WEATHER_API_KEY"), weatherapi.BaseURLV1)
 	if options.Forecast == true {
-		data, err := client.GetForecast(context.Background(),
+		data, err := client.GetForecast(context.TODO(),
 			&weatherapi.ForecastOptions{NumberOfDays: options.NumberOfDays, Location: options.Location, Language: options.Language})
 		if err != nil {
 			fmt.Println(err)
@@ -48,7 +48,7 @@ func main() {
 		}
 		presentation.PrintForecast(data)
 	} else {
-		data, err := client.GetCurrent(context.Background(),
+		data, err := client.GetCurrent(context.TODO(),
 			&weatherapi.ForecastOptions{Location: options.Location, Language: options.Language})
 		if err != nil {
 			fmt.Println(err)

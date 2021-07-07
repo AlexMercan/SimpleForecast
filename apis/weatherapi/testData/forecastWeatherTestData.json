@@ -1,0 +1,65 @@
+{
+    "location": {
+        "name": "New York",
+        "region": "New York",
+        "country": "United States of America",
+        "lat": 40.71,
+        "lon": -74.01,
+        "tz_id": "America/New_York",
+        "localtime_epoch": 1625676101,
+        "localtime": "2021-07-07 12:41"
+    },
+    "current": {
+        "last_updated": "2021-07-07 12:30",
+        "temp_c": 30.6,
+        "condition": {
+            "text": "Sunny",
+            "code": 1000
+        },
+        "wind_kph": 0.0,
+        "humidity": 65
+    },
+    "forecast": {
+        "forecastday": [
+            {
+                "date": "2021-07-07",
+                "day": {
+                    "maxtemp_c": 33.3,
+                    "mintemp_c": 22.2,
+                    "avghumidity": 67.0,
+                    "daily_chance_of_rain": "68",
+                    "condition": {
+                        "text": "Moderate rain",
+                        "code": 1189
+                    }
+                }
+            },
+            {
+                "date": "2021-07-08",
+                "day": {
+                    "maxtemp_c": 31.1,
+                    "mintemp_c": 23.3,
+                    "avghumidity": 66.0,
+                    "daily_chance_of_rain": "86",
+                    "condition": {
+                        "text": "Patchy rain possible",
+                        "code": 1063
+                    }
+                }
+            },
+            {
+                "date": "2021-07-09",
+                "day": {
+                    "maxtemp_c": 29.1,
+                    "mintemp_c": 22.0,
+                    "avghumidity": 74.0,
+                    "daily_chance_of_rain": "86",
+                    "condition": {
+                        "text": "Moderate rain",
+                        "code": 1189
+                    }
+                }
+            }
+        ]
+    }
+}

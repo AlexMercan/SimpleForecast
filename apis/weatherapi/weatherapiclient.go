@@ -33,9 +33,9 @@ type ForecastOptions struct {
 	Language     string
 }
 
-func NewWeatherClient(key string) *WeatherClient {
+func NewWeatherClient(key string, url string) *WeatherClient {
 	return &WeatherClient{
-		BaseURL:    BaseURLV1,
+		BaseURL:    url,
 		apiKey:     key,
 		HTTPClient: &http.Client{},
 	}
