@@ -2,7 +2,7 @@ package presentation
 
 import (
 	"fmt"
-	"simpleForecast/apis/weatherapi"
+	"simpleforecast/apis/weatherapi"
 )
 
 func PrintForecast(apiData *weatherapi.WeatherApiData) {

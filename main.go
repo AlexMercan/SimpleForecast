@@ -5,9 +5,9 @@ import (
 	"flag"
 	"fmt"
 	"os"
-	"simpleForecast/apis/weatherapi"
-	"simpleForecast/config"
-	"simpleForecast/presentation"
+	"simpleforecast/apis/weatherapi"
+	"simpleforecast/config"
+	"simpleforecast/presentation"
 )
 
 type CommandLineOptions struct {
@@ -20,7 +20,7 @@ type CommandLineOptions struct {
 func parseCommandLineArguments(config *config.Config) *CommandLineOptions {
 	numberOfDays := flag.Int("days", 0, "Number of days for the forecast(1 to 3)")
 	location := flag.String("location", config.Location, "Location for weather data(default is location via ip)")
-	lang := flag.String("lang", config.Language, "Language of the weather status(sunny, cloudy, etc.")
+	lang := flag.String("lang", config.Language, "Language of the weather status(sunny, cloudy, etc.)")
 	flag.Parse()
 	return &CommandLineOptions{
 		NumberOfDays: *numberOfDays,

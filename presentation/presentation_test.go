@@ -2,7 +2,7 @@ package presentation
 
 import (
 	"reflect"
-	"simpleForecast/apis/weatherapi"
+	"simpleforecast/apis/weatherapi"
 	"testing"
 )
 

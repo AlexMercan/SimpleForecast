@@ -17,7 +17,7 @@ func LoadConfiguration() (*Config, error) {
 		return nil, err
 	}
 	//Create the config directory if it doesn't exist
-	configFileDirectory := configurationDir + "/weatherapi"
+	configFileDirectory := configurationDir + "/simpleforecast"
 	err = os.MkdirAll(configFileDirectory, 0755)
 	if err != nil {
 		return nil, err
