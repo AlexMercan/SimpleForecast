@@ -57,6 +57,6 @@ func TestGetForecast(t *testing.T) {
 		t.Errorf("Error while parsing expected test data file\n")
 	}
 	if !reflect.DeepEqual(*data, expectedData) {
-		t.Errorf("Data !=expectedData\n")
+		t.Errorf("Data != expectedData\n")
 	}
 }

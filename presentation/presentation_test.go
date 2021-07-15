@@ -2,8 +2,8 @@ package presentation
 
 import (
 	"reflect"
+	"simpleForecast/apis/weatherapi"
 	"testing"
-	"weatherapiCLI/apis/weatherapi"
 )
 
 func TestGetAsciiDrawing(t *testing.T) {

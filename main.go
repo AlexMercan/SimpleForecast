@@ -5,9 +5,9 @@ import (
 	"flag"
 	"fmt"
 	"os"
-	"weatherapiCLI/apis/weatherapi"
-	"weatherapiCLI/config"
-	"weatherapiCLI/presentation"
+	"simpleForecast/apis/weatherapi"
+	"simpleForecast/config"
+	"simpleForecast/presentation"
 )
 
 type CommandLineOptions struct {
