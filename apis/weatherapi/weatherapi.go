@@ -75,7 +75,7 @@ type Day struct {
 	MaxTemperature_Celsius float32   `json:"maxtemp_c"`
 	MinTemperature_Celsius float32   `json:"mintemp_c"`
 	AverageHumidity        float32   `json:"avghumidity"`
-	ChanceOfRain           string    `json:"daily_chance_of_rain"`
+	ChanceOfRain           int       `json:"daily_chance_of_rain"`
 	Condition              Condition `json:"condition"`
 }
 

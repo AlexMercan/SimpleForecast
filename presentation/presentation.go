@@ -22,7 +22,7 @@ func printForecastDay(forecastDayData *weatherapi.ForecastDay) {
 	fmt.Printf("%sMin Temperature: %s°C\n", asciiDrawing[1], coloredTemperature)
 	coloredHumidity := applyColor(forecastDayData.Day.AverageHumidity, Blue)
 	fmt.Printf("%sHumidity: %s%%\n", asciiDrawing[2], coloredHumidity)
-	fmt.Printf("%sDaily chance of rain: %s%%\n", asciiDrawing[3], ColorStr(forecastDayData.Day.ChanceOfRain, Blue))
+	fmt.Printf("%sDaily chance of rain: %s%%\n", asciiDrawing[3], applyColor(forecastDayData.Day.ChanceOfRain, Blue))
 	fmt.Printf("%sStatus: %s\n", asciiDrawing[4], forecastDayData.Day.Condition.ConditionText)
 }
 

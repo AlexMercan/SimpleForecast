@@ -27,7 +27,7 @@
                     "maxtemp_c": 33.3,
                     "mintemp_c": 22.2,
                     "avghumidity": 67.0,
-                    "daily_chance_of_rain": "68",
+                    "daily_chance_of_rain": 68,
                     "condition": {
                         "text": "Moderate rain",
                         "code": 1189
@@ -40,7 +40,7 @@
                     "maxtemp_c": 31.1,
                     "mintemp_c": 23.3,
                     "avghumidity": 66.0,
-                    "daily_chance_of_rain": "86",
+                    "daily_chance_of_rain": 86,
                     "condition": {
                         "text": "Patchy rain possible",
                         "code": 1063
@@ -53,7 +53,7 @@
                     "maxtemp_c": 29.1,
                     "mintemp_c": 22.0,
                     "avghumidity": 74.0,
-                    "daily_chance_of_rain": "86",
+                    "daily_chance_of_rain": 86,
                     "condition": {
                         "text": "Moderate rain",
                         "code": 1189
